@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Govt Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#home"><span class="chakra">✦</span><span><strong>AI GOVT ASSISTANT</strong><small data-i18n="tagline">Government services, simplified.</small></span></a>
+  <nav><a href="#schemes" data-i18n="navSchemes">Schemes</a><a href="#documents" data-i18n="navDocuments">Documents</a><a href="#complaints" data-i18n="navComplaints">Complaints</a><a href="#faq" data-i18n="navFaq">FAQs</a></nav>
+  <div class="lang-tools"><button class="mini-voice" onclick="togglePageVoice()" title="Read page">🔊</button><select id="lang" aria-label="Language"><option>English</option><option>Telugu</option><option>Hindi</option><option>Tamil</option><option>Kannada</option></select></div>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div class="hero-bg"></div><div class="tri-line"></div>
+  <div class="hero-copy">
+    <div class="eyebrow" data-i18n="eyebrow">🇮🇳 CITIZEN-FIRST DIGITAL ASSISTANCE</div>
+    <h1><span data-i18n="hero1">Government services,</span><br><em data-i18n="hero2">made simple.</em></h1>
+    <p data-i18n="heroText">Find schemes, understand documents, translate public information, raise complaints and get careful answers — with official government links.</p>
+    <div class="hero-actions"><button class="primary" onclick="go('schemeAgent')" data-i18n="findSchemeBtn">Find My Scheme</button><button class="secondary" onclick="go('documents')" data-i18n="documentBtn">Understand a Document</button></div>
+    <div class="voice-strip"><button class="voice" onclick="voiceTo('faqQ')">🎙 <span data-i18n="speakQuestion">Speak a question</span></button><button class="voice" onclick="speak('heroCopyText')">🔊 <span data-i18n="listen">Listen</span></button><span id="heroCopyText" class="sr-only">Government services made simple. Find schemes, understand documents, translate information, prepare complaints and get answers with official government links.</span></div>
+  </div>
+  <div class="hero-visual"><div class="india-outline">INDIA</div><div class="gov-building"><div class="flag-pole">🇮🇳</div><div class="dome"></div><div class="pillars"></div><div class="steps"></div></div><div class="seal">✦</div></div>
+</section>
+
+<section class="cards">
+ <button onclick="go('schemeAgent')"><b>🏛️</b><span><strong data-i18n="card1">Scheme Agent</strong><small data-i18n="card1s">Personalised scheme discovery</small></span>›</button>
+ <button onclick="go('documents')"><b>📄</b><span><strong data-i18n="card2">Document AI</strong><small data-i18n="card2s">Read, simplify and translate</small></span>›</button>
+ <button onclick="go('complaints')"><b>📝</b><span><strong data-i18n="card3">Complaint Assistant</strong><small data-i18n="card3s">Create a formal letter</small></span>›</button>
+ <button onclick="go('faq')"><b>❓</b><span><strong data-i18n="card4">Govt FAQs</strong><small data-i18n="card4s">Ask and listen to answers</small></span>›</button>
+</section>
+
+<section id="schemeAgent" class="section agent-section">
+ <div class="section-title"><div><div class="eyebrow" data-i18n="agentEyebrow">PERSONALISED SCHEME AGENT</div><h2 data-i18n="agentTitle">Tell us about yourself.</h2><p data-i18n="agentText">We will show schemes that may be relevant to your profile. This is a preliminary match, not a final eligibility decision.</p></div><a class="official-link" href="https://www.myscheme.gov.in/" target="_blank" rel="noopener" data-i18n="openMyScheme">Open myScheme ↗</a></div>
+ <div class="agent-card">
+   <div class="agent-form">
+    <label><span data-i18n="name">Name</span><div class="input-wrap"><input id="profileName" placeholder="Your name"><button onclick="voiceTo('profileName')">🎙</button></div></label>
+    <label><span data-i18n="age">Age</span><input id="profileAge" type="number" min="0" max="120" placeholder="Age"></label>
+    <label><span data-i18n="income">Annual family income</span><select id="profileIncome"><option value="low" data-i18n="incomeLow">Below ₹2.5 lakh</option><option value="mid" data-i18n="incomeMid">₹2.5–5 lakh</option><option value="high" data-i18n="incomeHigh">Above ₹5 lakh</option><option value="unknown" data-i18n="incomeUnknown">Prefer not to say</option></select></label>
+    <label><span data-i18n="state">State</span><div class="input-wrap"><input id="profileState" placeholder="Your state"><button onclick="voiceTo('profileState')">🎙</button></div></label>
+    <label><span data-i18n="occupation">I am</span><select id="profileOccupation"><option>Student</option><option>Farmer</option><option>Woman</option><option>Job seeker</option><option>Senior citizen</option><option>General citizen</option></select></label>
+    <label><span data-i18n="need">I need support for</span><select id="profileNeed"><option>Education</option><option>Healthcare</option><option>Housing</option><option>Employment</option><option>Financial support</option><option>Other</option></select></label>
+    <button class="primary wide" onclick="findMySchemes()" data-i18n="findMatches">Find Relevant Schemes</button>
+   </div>
+   <div class="agent-result"><div class="result-head"><div><div class="eyebrow" data-i18n="matches">POTENTIAL MATCHES</div><h3 data-i18n="resultTitle">Your scheme results</h3></div><button class="voice" onclick="speak('schemeResults')">🔊 <span data-i18n="listen">Listen</span></button></div><div id="schemeResults"><div class="empty-result" data-i18n="resultEmpty">Enter your details and choose what you need. We will show relevant official schemes here.</div></div></div>
+ </div>
+</section>
+
+<section id="schemes" class="section">
+ <div class="section-title"><div><div class="eyebrow" data-i18n="officialSources">OFFICIAL SOURCES</div><h2 data-i18n="schemeLibrary">Government Scheme Library</h2></div><a class="official-link" href="https://www.myscheme.gov.in/" target="_blank" rel="noopener" data-i18n="openMyScheme">Open myScheme ↗</a></div>
+ <div class="filters"><button class="active" data-c="All" data-i18n="all">All</button><button data-c="Education" data-i18n="education">Education</button><button data-c="Healthcare" data-i18n="healthcare">Healthcare</button><button data-c="Women" data-i18n="women">Women</button><button data-c="Farmers" data-i18n="farmers">Farmers</button><button data-c="Housing" data-i18n="housing">Housing</button></div><div id="schemeGrid" class="grid"></div>
+</section>
+
+<section id="documents" class="section split">
+ <div class="panel">
+  <div class="eyebrow" data-i18n="docEyebrow">AI DOCUMENT ASSISTANT</div><h2 data-i18n="docTitle">Understand your document</h2><p data-i18n="docText">Upload a PDF, DOCX, TXT or image. The app reads it and explains important information in your selected language.</p>
+  <input id="file" type="file" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg,.webp">
+  <div class="actions"><button class="primary" onclick="summarize()" data-i18n="summarize">Summarize with AI</button><button class="voice" onclick="speak('summary')">🔊 <span data-i18n="read">Read aloud</span></button></div><pre id="summary" data-i18n="docPlaceholder">Your document result will appear here.</pre>
+ </div>
+ <div class="panel">
+  <div class="eyebrow" data-i18n="languageEyebrow">LANGUAGE ACCESS</div><h2 data-i18n="translateTitle">Translate & speak</h2><p data-i18n="translateTextInfo">Use your voice or type. The complete interface also changes when you select a language.</p>
+  <div class="input-wrap large"><textarea id="question" data-i18n-placeholder="questionPlaceholder" placeholder="Type or speak your text..."></textarea><button onclick="voiceTo('question')">🎙</button></div>
+  <select id="target"><option>Telugu</option><option>English</option><option>Hindi</option><option>Tamil</option><option>Kannada</option></select>
+  <div class="actions"><button class="primary" onclick="translate()" data-i18n="translate">Translate</button><button class="voice" onclick="speak('translation')">🔊 <span data-i18n="voiceOutput">Voice output</span></button></div><pre id="translation" data-i18n="translationPlaceholder">Translation will appear here.</pre>
+ </div>
+</section>
+
+<section id="complaints" class="section">
+ <div class="section-title"><div><div class="eyebrow" data-i18n="complaintEyebrow">OFFICIAL HAND-OFF</div><h2 data-i18n="complaintTitle">AI Complaint Assistant</h2><p data-i18n="complaintText">Describe the issue → generate a formal letter → copy/download it → submit through the official portal.</p></div></div>
+ <div class="complaint panel">
+  <div>
+   <label data-i18n="name">Name</label><div class="input-wrap"><input id="name" data-i18n-placeholder="namePlaceholder" placeholder="Your name (optional)"><button onclick="voiceTo('name')">🎙</button></div>
+   <label data-i18n="state">State</label><div class="input-wrap"><input id="state" data-i18n-placeholder="statePlaceholder" placeholder="State"><button onclick="voiceTo('state')">🎙</button></div>
+   <label data-i18n="category">Category</label><select id="category"><option>General</option><option>Roads</option><option>Water</option><option>Electricity</option><option>Municipality</option><option>Transport</option><option>Consumer</option><option>Cyber Crime</option></select>
+   <label data-i18n="location">Location</label><div class="input-wrap"><input id="location" data-i18n-placeholder="locationPlaceholder" placeholder="Area / locality"><button onclick="voiceTo('location')">🎙</button></div>
+   <label data-i18n="problem">Problem</label><div class="input-wrap large"><textarea id="description" data-i18n-placeholder="problemPlaceholder" placeholder="Describe your problem clearly..."></textarea><button onclick="voiceTo('description')">🎙</button></div>
+   <div class="actions"><button class="primary" onclick="draftComplaint()" data-i18n="generateLetter">Generate Complaint Letter</button></div>
+  </div>
+  <div>
+   <div class="result-head"><div class="eyebrow" data-i18n="generatedLetter">GENERATED LETTER</div><button class="voice" onclick="speak('letter')">🔊 <span data-i18n="read">Read aloud</span></button></div>
+   <pre id="letter" data-i18n="letterPlaceholder">Your formal complaint letter will appear here.</pre>
+   <div class="actions"><button class="voice" onclick="copyLetter()" data-i18n="copy">Copy</button><button class="voice" onclick="downloadLetter()" data-i18n="download">Download</button></div><div id="portal"></div>
+  </div>
+ </div>
+</section>
+
+<section id="faq" class="section">
+ <div class="section-title"><div><div class="eyebrow" data-i18n="faqEyebrow">CAREFUL ANSWERS</div><h2 data-i18n="faqTitle">Government FAQ Assistant</h2><p data-i18n="faqText">Ask in your language. AI answers carefully and tells you when official verification is needed.</p></div></div>
+ <div class="faqbox panel"><div class="input-wrap large"><textarea id="faqQ" data-i18n-placeholder="faqPlaceholder" placeholder="Ask a government-service question..."></textarea><button onclick="voiceTo('faqQ')">🎙</button></div><div class="actions"><button class="primary" onclick="askFaq()" data-i18n="askAi">Ask AI</button><button class="voice" onclick="speak('faqA')">🔊 <span data-i18n="read">Read aloud</span></button></div><pre id="faqA" data-i18n="faqPlaceholderResult">Your answer will appear here.</pre></div>
+</section>
+</main>
+<footer>
+    <strong>AI GOVT ASSISTANT</strong>
+    · Citizen assistance, not a government department.
+    Always verify important information on official government portals.
+</footer>
+<script src="/static/app.js"></script>
+</body></html>
