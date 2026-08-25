@@ -3,7 +3,7 @@ import os, base64, requests
 
 def _url():
     key=os.getenv("GEMINI_API_KEY","").strip()
-    model=os.getenv("GEMINI_MODEL","gemini-2.0-flash")
+    model=os.getenv("GEMINI_MODEL","gemini-2.5-flash")
     if not key: return None
     return f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}"
 
